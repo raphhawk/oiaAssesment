@@ -1,12 +1,14 @@
-/*https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/rates_of_exchange?fields=country_currency_desc,exchange_rate, record_date&filter=record_date:gte:2015-01-01*/
 /*https://fiscaldata.treasury.gov/api-documentation/*/
-
+/*oia-assesment-vpsg.vercel.app*/
+"use client";
 import Image from "next/image";
 import DashOptions from "@/components/DashOptions";
 import DashSmallCard from "@/components/DashSmallCard";
 import LineChart from "@/components/LineChart";
-import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import PieChart from "@/components/PieChart";
+import MobileMenu from "@/components/MobileMenu";
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import { useState } from "react";
 
 const dashOptions = {
   dashboard: {
@@ -68,8 +70,9 @@ const dashSmallCard = {
 };
 
 const Dashbord = () => {
+  const [menu, setMenu] = useState(false);
   return (
-    <div className="flex flex-row w-fit bg-[#F5F5F5]">
+    <div className="flex flex-row md:w-fit w-full bg-[#F5F5F5] overflow-hidden">
       <div className="flex flex-col w-[280px] h-[944px] rounded-[30px] bg-black ml-[40px] my-[40px] hidden md:block">
         <div className="w-[123px] h-[44px] font-montserrat text-[36px] font-[700] leading-[43.88px] ml-[50px] mt-[60px]">
           Board.
@@ -89,10 +92,19 @@ const Dashbord = () => {
         </div>
       </div>
       <div className="flex flex-col font-lato text-[#858585] text-[14px] font-[400] leading-[16.8px]">
-        <div className="flex md:flex-row flex-col">
+        <div className="flex md:flex-row flex-col mx-10 md:mx-0">
           <p className="text-black w-[123px] h-[44px] ml-[60px] mt-[60px] font-montserrat text-[24px] font-[700] leading-[29.26px] mr-[590px]">
             Dashboard
           </p>
+          <button
+            onClick={() => {
+              setMenu(true);
+            }}
+            className="md:hidden w-fit h-fit px-2 rounded-md hover:ring-4 transition delay-50 text-2xl block bg-black absolute top-[60px]"
+          >
+            =
+          </button>
+          {menu && <MobileMenu setMenu={setMenu} />}
           <div className="flex flex-row mr-[47px]">
             <input
               type="text"
@@ -139,11 +151,11 @@ const Dashbord = () => {
             );
           })}
         </div>
-        <div className="bg-white md:w-[1000px] w-[60px] md:h-[359px] h-fit rounded-[20px] mx-[60px] mt-[40px]">
-          <div className="w-[480px] h-[256px] bg-white rounded-[20px]">
-            <div className="flex flex-row md:justify-between w-[1000px]">
+        <div className="bg-white md:w-[1000px] w-fit md:h-[359px] h-fit rounded-[20px] md:mx-[60px] mx-10 mt-[40px]">
+          <div className="md:w-[480px] h-[256px] bg-white rounded-[20px]">
+            <div className="flex md:flex-row flex-col md:justify-between md:w-[1000px]">
               <div className="flex flex-col mt-[30px] ml-[40px]">
-                <p className="w-[93px] h-[22px] font-montserrat text-[18px] font-[700] leading-[21.94px] text-black mb-[5px]">
+                <p className="md:w-[93px] w-fit md:h-[22px] h-fit font-montserrat text-[18px] font-[700] leading-[21.94px] text-black mb-[5px]">
                   Activities
                 </p>
                 <div className="flex flex-row gap-[5px]">
@@ -155,7 +167,7 @@ const Dashbord = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex md:flex-row flex-col mt-[49px] mr-[60px] ml-[60px] md:ml-[0px] w-[152.47px] justify-between">
+              <div className="flex md:flex-row flex-col md:mt-[49px] mt-[10px] mr-[60px] ml-[60px] md:ml-[0px] w-[152.47px] justify-between">
                 <p className="flex flex-row w-[24px] h-[17px] font-lato text-[14px] font-[400] leading-[16.8px]">
                   <Image
                     src="assets/db_bar_chart_assets/red_dot.svg"
@@ -181,21 +193,21 @@ const Dashbord = () => {
             </div>
           </div>
         </div>
-        <div className="flex md:flex-row flex-col justify-between mt-[40px] mx-[60px]">
-          <div className="w-[480px] h-[256px] bg-white rounded-[20px]">
-            <div className="flex flex-row justify-between">
+        <div className="flex md:flex-row flex-col justify-between mt-[40px] md:mx-[60px] mx-10">
+          <div className="md:w-[480px] md:h-[256px] h-fit w-fit bg-white rounded-[20px]">
+            <div className="flex md:flex-row flex-col md:justify-between">
               <p className="w-[125px] h-[22px] font-montserrat text-[18px] font-[700] leading-[21.94px] text-black ml-[40px] mt-[30px]">
                 Top products
               </p>
-              <p className=" h-[15px] text-[#858585] flex flex-row mt-[31px] mr-[56px] font-montserrat text-[12px] font-[400] leading-[14.63px]">
+              <p className=" h-[15px] text-[#858585] flex flex-row md:mt-[31px] ml-[40px] md:ml-[0px] mr-[56px] font-montserrat text-[12px] font-[400] leading-[14.63px]">
                 May - June 2021 <IoIosArrowDown className="ml-[5px]" />
               </p>
             </div>
-            <div className="flex flex-row justify-between">
+            <div className="flex md:flex-row flex-col justify-between">
               <PieChart />
-              <div>
+              <div className="ml-[40px] md:ml-[0px]">
                 <div className="flex flex-col">
-                  <p className="flex flex-row mr-[138px] mt-[25px] font-montserrat text-[14px] font-[700] leading-[17.07px] text-black">
+                  <p className="flex flex-row mr-[138px] md:mt-[25px] font-montserrat text-[14px] font-[700] leading-[17.07px] text-black">
                     <Image
                       src="assets/db_pie_chart_assets/green_dot.svg"
                       width={11}
@@ -232,15 +244,15 @@ const Dashbord = () => {
                     />
                     Super Hoodies
                   </p>
-                  <p className="ml-[21px] w-[24px] h-[14px] mt-[5px] font-montserrat text-[12px] font-[400] leading-[14.4px]">
+                  <p className="ml-[21px] mb-[10px] md:mb-[0px] w-[24px] h-[14px] mt-[5px] font-montserrat text-[12px] font-[400] leading-[14.4px]">
                     14%
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-[480px] h-[256px] bg-white rounded-[20px]">
-            <div className="flex flex-row justify-between mt-[30px] ml-[40px] mr-[30px]">
+          <div className="md:w-[480px] w-fit md:h-[256px] h-fit my-[40px] md:my-[0px] bg-white rounded-[20px]">
+            <div className="flex md:flex-row flex-col justify-between mt-[30px] ml-[40px] mr-[30px]">
               <div className="w-[162px] h-[22px] text-black font-montserrat text-[18px] font-[700] leading-[21.94px]">
                 Today's schedule
               </div>
@@ -252,7 +264,7 @@ const Dashbord = () => {
               <div className="flex flex-row">
                 <div className="h-[66px] w-[5px] bg-[#9BDD7C] ml-[40px] mr-[15px] mb-[13px]"></div>
                 <div>
-                  <p className="w-[236px] h-[17px] font-lato text-[14px] font-[700] leading-[16.8px] text-[#666666] mb-[5px]">
+                  <p className="md:w-[236px] w-[200px] h-[17px] font-lato text-[14px] font-[700] leading-[16.8px] text-[#666666] md:mb-[5px] mb-[20px]">
                     Meeting with suppliers from Kuta Bali
                   </p>
                   <p className="w-[66px] h-[14px] font-lato text-[12px] font-[400] leading-[14.4px] text-[#999999] mb-[5px]">
@@ -266,13 +278,13 @@ const Dashbord = () => {
               <div className="flex flex-row">
                 <div className="h-[66px] w-[5px] bg-[#6972C3] ml-[40px] mr-[15px]"></div>
                 <div>
-                  <p className="w-[236px] h-[17px] font-lato text-[14px] font-[700] leading-[16.8px] text-[#666666] mb-[5px]">
+                  <p className="md:w-[236px] w-[200px] h-[17px] font-lato text-[14px] font-[700] leading-[16.8px] text-[#666666] md:mb-[5px] mb-[20px]">
                     Check operation at Giga Factory 1
                   </p>
                   <p className="w-[66px] h-[14px] font-lato text-[12px] font-[400] leading-[14.4px] text-[#999999] mb-[5px]">
                     18.00-20.00
                   </p>
-                  <p className="w-[135px] h-[14px] font-lato text-[12px] font-[400] leading-[14.4px] text-[#999999]">
+                  <p className="w-[135px] h-[14px] font-lato text-[12px] font-[400] leading-[14.4px] text-[#999999] mb-[20px] md:mb-[0px]">
                     at Central Jakarta
                   </p>
                 </div>

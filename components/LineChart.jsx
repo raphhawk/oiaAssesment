@@ -48,7 +48,6 @@ const LineChart = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(data1, data2);
   const data = {
     labels: ["", "Week 1", "Week 2", "Week 3", "Week 4", ""],
     datasets: [
@@ -96,7 +95,7 @@ const LineChart = () => {
   };
 
   return (
-    <div className="flex md:w-[921px] md:h-[227px] mt-[31px] ml-[40px]">
+    <div className="flex md:w-[921px] w-[200px] md:h-[227px] mt-[31px] ml-[40px]">
       <Line width={921} height={227} data={data} options={options}></Line>
     </div>
   );
